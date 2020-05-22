@@ -1,12 +1,14 @@
 package com.hibernate.models;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -18,8 +20,8 @@ public class Book {
 
     private String title;
 
-    @ManyToOne
-    private Author author;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Author> authors;
 
     @OneToOne
     private Genre genre;
@@ -42,12 +44,12 @@ public class Book {
         this.title = name;
     }
 
-    public Author getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     public Genre getGenre() {
@@ -71,7 +73,7 @@ public class Book {
         return "Book{"
                 + "id=" + id
                 + ", title='" + title + '\''
-                + ", author=" + author
+                + ", author=" + authors
                 + ", genre=" + genre
                 + ", pages=" + pages
                 + '}';

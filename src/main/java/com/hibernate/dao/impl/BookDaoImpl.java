@@ -65,7 +65,7 @@ public class BookDaoImpl implements BookDao {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<Book> criteriaQuery = cb.createQuery(Book.class);
             Root<Book> bookRoot = criteriaQuery.from(Book.class);
-            criteriaQuery.select(bookRoot).where(cb.equal(bookRoot.get("author"), author));
+            criteriaQuery.select(bookRoot).where(cb.isMember(author, bookRoot.get("authors")));
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Error retrieving books by author.", e);

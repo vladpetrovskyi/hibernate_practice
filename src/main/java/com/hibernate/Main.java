@@ -8,6 +8,8 @@ import com.hibernate.service.AuthorService;
 import com.hibernate.service.BookService;
 import com.hibernate.service.GenreService;
 
+import java.util.List;
+
 public class Main {
 
     private static final Injector INJECTOR = Injector.getInstance("com.hibernate");
@@ -27,7 +29,7 @@ public class Main {
         authorTolstoi = authorService.add(authorTolstoi);
 
         Book bookWarAndPeace = new Book();
-        bookWarAndPeace.setAuthor(authorTolstoi);
+        bookWarAndPeace.setAuthors(List.of(authorTolstoi));
         bookWarAndPeace.setGenre(genreNovel);
         bookWarAndPeace.setTitle("War and Peace");
         bookWarAndPeace.setPages(1225);
@@ -45,7 +47,7 @@ public class Main {
         authorZhulesVerne = authorService.add(authorZhulesVerne);
 
         Book bookZhules = new Book();
-        bookZhules.setAuthor(authorZhulesVerne);
+        bookZhules.setAuthors(List.of(authorZhulesVerne));
         bookZhules.setGenre(genreAdventure);
         bookZhules.setTitle("Five Weeks in a Balloon");
         bookZhules.setPages(400);
@@ -58,8 +60,7 @@ public class Main {
         authorRowling = authorService.add(authorRowling);
 
         Book bookRowling = new Book();
-        bookRowling.setAuthor(authorRowling);
-
+        bookRowling.setAuthors(List.of(authorRowling));
         bookRowling.setGenre(genreNovel);
         bookRowling.setTitle("Harry Potter");
         bookRowling.setPages(300);
