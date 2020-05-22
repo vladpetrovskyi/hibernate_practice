@@ -7,7 +7,6 @@ import com.hibernate.models.Genre;
 import com.hibernate.service.AuthorService;
 import com.hibernate.service.BookService;
 import com.hibernate.service.GenreService;
-
 import java.util.List;
 
 public class Main {
