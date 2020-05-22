@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +22,7 @@ public class Book {
     @ManyToOne
     private Author author;
 
-    @ManyToOne
+    @OneToOne
     private Genre genre;
 
     private int pages;

@@ -14,28 +14,66 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Genre genre = new Genre();
-        genre.setGenre("Novel");
+        Genre genreNovel = new Genre();
+        genreNovel.setGenre("Novel");
         GenreService genreService = (GenreService) INJECTOR.getInstance(GenreService.class);
-        genre = genreService.add(genre);
+        genreNovel = genreService.add(genreNovel);
 
-        Author author = new Author();
-        author.setName("Lev");
-        author.setSurname("Tolstoi");
-        author.setYearOfBirth(1828);
+        Author authorTolstoi = new Author();
+        authorTolstoi.setName("Lev");
+        authorTolstoi.setSurname("Tolstoi");
+        authorTolstoi.setYearOfBirth(1828);
         AuthorService authorService = (AuthorService) INJECTOR.getInstance(AuthorService.class);
-        author = authorService.add(author);
+        authorTolstoi = authorService.add(authorTolstoi);
 
-        Book book = new Book();
-        book.setAuthor(author);
-        book.setGenre(genre);
-        book.setTitle("War and Peace");
-        book.setPages(1225);
+        Book bookWarAndPeace = new Book();
+        bookWarAndPeace.setAuthor(authorTolstoi);
+        bookWarAndPeace.setGenre(genreNovel);
+        bookWarAndPeace.setTitle("War and Peace");
+        bookWarAndPeace.setPages(1225);
         BookService bookService = (BookService) INJECTOR.getInstance(BookService.class);
-        bookService.add(book);
+        bookService.add(bookWarAndPeace);
 
-        System.out.println("By Title: " + bookService.getBookByTitle("War and Peace"));
-        System.out.println("By Author: " + bookService.getBooksByAuthor(author));
-        System.out.println("By Genre: " + bookService.getBooksByGenre(genre));
+        Genre genreAdventure = new Genre();
+        genreAdventure.setGenre("Adventure");
+        genreAdventure = genreService.add(genreAdventure);
+
+        Author authorZhulesVerne = new Author();
+        authorZhulesVerne.setName("Zhules");
+        authorZhulesVerne.setSurname("Verne");
+        authorZhulesVerne.setYearOfBirth(1828);
+        authorZhulesVerne = authorService.add(authorZhulesVerne);
+
+        Book bookZhules = new Book();
+        bookZhules.setAuthor(authorZhulesVerne);
+        bookZhules.setGenre(genreAdventure);
+        bookZhules.setTitle("Five Weeks in a Balloon");
+        bookZhules.setPages(400);
+        bookService.add(bookZhules);
+
+        Author authorRowling = new Author();
+        authorRowling.setName("Joanne");
+        authorRowling.setSurname("Rowling");
+        authorRowling.setYearOfBirth(1965);
+        authorRowling = authorService.add(authorRowling);
+
+        Book bookRowling = new Book();
+        bookRowling.setAuthor(authorRowling);
+
+        bookRowling.setGenre(genreNovel);
+        bookRowling.setTitle("Harry Potter");
+        bookRowling.setPages(300);
+        bookService.add(bookRowling);
+
+        System.out.println("By Title 1: " + bookService.getBookByTitle("War and Peace"));
+        System.out.println("By Author 1: " + bookService.getBooksByAuthor(authorTolstoi));
+        System.out.println("By Genre 1: " + bookService.getBooksByGenre(genreNovel));
+
+        System.out.println("By Title 2: " + bookService.getBookByTitle("Five Weeks in a Balloon"));
+        System.out.println("By Author 2: " + bookService.getBooksByAuthor(authorZhulesVerne));
+        System.out.println("By Genre 2: " + bookService.getBooksByGenre(genreAdventure));
+
+        System.out.println("By Title 3: " + bookService.getBookByTitle("Harry Potter"));
+        System.out.println("By Author 3: " + bookService.getBooksByAuthor(authorRowling));
     }
 }
