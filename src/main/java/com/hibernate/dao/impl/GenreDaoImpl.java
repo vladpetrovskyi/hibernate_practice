@@ -36,5 +36,6 @@ public class GenreDaoImpl implements GenreDao {
             if (session != null) {
                 session.close();
             }
-        }    }
+        }
+    }
 }
